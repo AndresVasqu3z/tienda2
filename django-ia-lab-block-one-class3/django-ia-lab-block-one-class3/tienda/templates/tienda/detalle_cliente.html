@@ -1,0 +1,17 @@
+{% extends "tienda/base.html" %}
+{% block title %}Cliente: {{ cliente.nombre }}{% endblock %}
+{% block content %}
+  <h1>{{ cliente.nombre }}</h1>
+  <p>Email: {{ cliente.correo }}</p>
+
+  <h3>Pedidos</h3>
+  <ul>
+    {% for ped in pedidos %}
+      <li>
+        <a href="{% url 'tienda:detalle_pedido' ped.pk %}">Pedido #{{ ped.id }}</a> — {{ ped.estado }}
+      </li>
+    {% empty %}
+      <li>Este cliente no tiene pedidos.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
